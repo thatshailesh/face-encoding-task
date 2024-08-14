@@ -1,0 +1,10 @@
+AWS_ACCESS_KEY_ID=
+AWS_SECRET_ACCESS_KEY=
+MONGO_URI=mongodb://mongodb:27017/veriff
+S3_BUCKET_NAME=
+S3_region=
+IMAGE_METADATA_QUEUE=image-metadata-queue
+IMAGE_METADATA_JOB=process-image-metadata
+REDIS_HOST=redis
+REDIS_PORT=6379
+IMAGE_UPLOAD_LIMIT=5

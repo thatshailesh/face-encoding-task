@@ -1,0 +1,12 @@
+AWS_ACCESS_KEY_ID=
+AWS_SECRET_ACCESS_KEY=
+S3_BUCKET_NAME=
+S3_region=
+FACE_ENCODING_SERVICE_URL=http://face-encoding-service:8000/v1/selfie
+IMAGE_METADATA_QUEUE=image-metadata-queue
+IMAGE_METADATA_JOB=process-image-metadata
+SESSION_SUMMARY_QUEUE=session-summary-queue
+SESSION_SUMMARY_JOB=session-summary-job
+REDIS_HOST=redis
+REDIS_PORT=6379
+WORKERS_CONCURRENCY=5

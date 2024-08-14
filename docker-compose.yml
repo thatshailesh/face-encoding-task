@@ -1,0 +1,62 @@
+version: "3.3"
+
+services:
+  redis:
+    image: redis:6.2-alpine
+    container_name: redis
+    ports:
+      - "6379:6379"
+
+  mongodb:
+    image: mongo:4.4
+    container_name: mongodb
+    ports:
+      - "27018:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  session-service:
+    build:
+      context: ./session-service
+    container_name: session-service
+    ports:
+      - "3001:3000"
+    depends_on:
+      - redis
+      - mongodb
+    env_file:
+      - ./session-service/.env
+
+  image-upload-service:
+    build:
+      context: ./image-upload-service
+    container_name: image-upload-service
+    ports:
+      - "3002:3000"
+    depends_on:
+      - redis
+      - mongodb
+    env_file:
+      - ./image-upload-service/.env
+
+  face-encoding-service:
+    image: veriffdocker/face-encoding-test-task:latest
+    container_name: face-encoding-service
+    ports:
+      - "8000:8000"
+
+  image-processing-service:
+    build:
+      context: ./image-processing-service
+    container_name: image-processing-service
+    ports:
+      - "3003:3000"
+    depends_on:
+      - redis
+      - mongodb
+      - face-encoding-service
+    env_file:
+      - ./image-processing-service/.env
+
+volumes:
+  mongo_data:
